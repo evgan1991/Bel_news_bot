@@ -1,0 +1,39 @@
+{
+    "variables":
+        {
+            "source_ami": "",
+            "aws_access_key": "AKIAYMOV3GSOAC6UEMPF",
+            "aws_secret_key": "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",
+            "OS_Name": "Ubuntu",
+            "OS_Release": "18.04"
+        },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "us-east-2",
+            "source_ami_filter":
+                {
+                    "filters":
+                        {
+                            "virtualization-type": "hvm",
+                            "name": "ubuntu-minimal/images-testing/hvm-ssd/ubuntu-bionic-daily-amd64-minimal-*",
+                            "root-device-type": "ebs"
+                        },
+                    "owners": ["099720109477"],
+                    "most_recent": true
+                },
+            "instance_type": "t2.micro",
+            "ssh_username": "ubuntu",
+            "ami_name": "Packer Build {{user `OS_Name`}} {{user `OS_Release`}} {{timestamp}} News_bot",
+            "tags":
+                {
+                    "Name": "{{user `OS_Name`}} {{user `OS_Release`}} AMI",
+                    "OS_Version": "{{user `OS_Name`}}",
+                    "Release": "{{user `OS_Release`}}",
+                    "Description": "Ubuntu with python telegram bot for news from belarus"
+                }
+
+        }]
+}
