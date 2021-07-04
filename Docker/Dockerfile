@@ -27,6 +27,6 @@ WORKDIR /var/lib/
 RUN git clone git@github.com:evgan1991/Bel_news_bot.git
 RUN rm /root/.ssh/id_rsa
 
-WORKDIR /var/lib/News_bot/bot
+WORKDIR /var/lib/Bel_news_bot/bot
 ENTRYPOINT ["python3"]
 CMD ["feed.py"]
